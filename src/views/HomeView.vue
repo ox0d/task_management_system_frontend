@@ -2,6 +2,6 @@
 
 <template>
   <h1 class="text-3xl font-bold underline">
-    Hello world!
+    Hello from HomeView!
   </h1>
 </template>
