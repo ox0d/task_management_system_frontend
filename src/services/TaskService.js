@@ -22,7 +22,7 @@ export default {
   updateTask(id, task) {
     return apiClient.put(`/tasks/${id}`, task)
   },
-  deleteTask(id) {
+  async deleteTask(id) {
     return apiClient.delete(`/tasks/${id}`)
   }
 }
