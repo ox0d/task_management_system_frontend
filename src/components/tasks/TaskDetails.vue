@@ -10,7 +10,7 @@ onMounted(() => {
     TaskService.getTask(props.id).then((response) => {
         task.value = response.data
     }).catch((error) => {
-        console.log(error)
+        console.error('Error loading task:', error);
     })
 })
 </script>
