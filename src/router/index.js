@@ -21,15 +21,15 @@ const router = createRouter({
           component: () => import('../components/tasks/TaskList.vue')
         },
         {
-          path: 'new', // we will have a new button on the task-list to add new tasks
-          name: 'new-task',
-          component: () => import('../components/tasks/NewTask.vue')
-        },
-        {
           path: ':id',
           props: true,
           name: 'task-details',
           component: () => import('../components/tasks/TaskDetails.vue')
+        },
+        {
+          path: 'new',
+          name: 'new-task',
+          component: () => import('../components/tasks/NewTask.vue')
         },
         {
           path: ':id/edit',
@@ -37,12 +37,6 @@ const router = createRouter({
           name: 'edit-task',
           component: () => import('../components/tasks/EditTask.vue')
         }
-        // {
-        //   path: ':id/delete',
-        //   props: true,
-        //   name: 'delete-task',
-        //   component: () => import('../components/tasks/DeleteTask.vue')
-        // }
       ]
     }
   ]
