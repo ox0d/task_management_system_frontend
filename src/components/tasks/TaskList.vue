@@ -34,7 +34,7 @@ const hideSuccessNotification = () => {
 </script>
 
 <template>
-    <div class="my-10 flex flex-col items-center justify-center w-[500px]">
+    <div class="min-h-dvh my-10 flex flex-col items-center justify-center w-[500px]">
         <div v-if="showSuccessNotification"
             class="fixed bottom-4 left-4 bg-green-500 text-white p-4 rounded-lg shadow-lg">
             <div class="flex flex-row">
