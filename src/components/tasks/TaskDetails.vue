@@ -6,12 +6,19 @@ const props = defineProps(['id'])
 
 const task = ref({})
 
-onMounted(() => {
-    TaskService.getTask(props.id).then((response) => {
+onMounted(async () => {
+    // TaskService.getTask(props.id).then((response) => {
+    //     task.value = response.data
+    // }).catch((error) => {
+    //     console.error('Error loading task:', error);
+    // })
+
+    try {
+        const response = await TaskService.getTask(props.id)
         task.value = response.data
-    }).catch((error) => {
+    } catch (error) {
         console.error('Error loading task:', error);
-    })
+    }
 })
 </script>
 

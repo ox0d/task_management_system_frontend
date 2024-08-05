@@ -6,12 +6,18 @@ import TaskService from '@/services/TaskService.js'
 const tasks = ref([])
 const showSuccessNotification = ref(false)
 
-onMounted(() => {
-    TaskService.getTasks().then((response) => {
+onMounted(async () => {
+    // TaskService.getTasks().then((response) => {
+    //     tasks.value = response.data
+    // }).catch((error) => {
+    //     console.log(error)
+    // })
+    try {
+        const response = await TaskService.getTasks()
         tasks.value = response.data
-    }).catch((error) => {
+    } catch (error) {
         console.log(error)
-    })
+    }
 })
 
 const deleteTask = (id) => {

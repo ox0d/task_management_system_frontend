@@ -44,7 +44,7 @@ const validateForm = () => {
     return isValid
 }
 
-const handleSubmit = () => {
+const handleSubmit = async () => {
     if (!validateForm()) {
         return
     }
@@ -55,16 +55,26 @@ const handleSubmit = () => {
         due_date: due_date.value
     }
 
-    TaskService.addTask(task.value)
-        .then(() => {
-            showSuccessNotification.value = true
-            setTimeout(() => {
-                showSuccessNotification.value = false
-            }, 3000)
-        })
-        .catch((error) => {
-            console.error('Error adding task:', error);
-        })
+    // TaskService.addTask(task.value)
+    //     .then(() => {
+    //         showSuccessNotification.value = true
+    //         setTimeout(() => {
+    //             showSuccessNotification.value = false
+    //         }, 3000)
+    //     })
+    //     .catch((error) => {
+    //         console.error('Error adding task:', error);
+    //     })
+
+    try {
+        await TaskService.addTask(task.value)
+        showSuccessNotification.value = true
+        setTimeout(() => {
+            showSuccessNotification.value = false
+        }, 3000)
+    } catch (error) {
+        console.error('Error adding task:', error);
+    }
 }
 
 const hideSuccessNotification = () => {

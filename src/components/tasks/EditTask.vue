@@ -13,15 +13,26 @@ const description = ref('')
 const status = ref('')
 const due_date = ref('')
 
-onMounted(() => {
-    TaskService.getTask(props.id).then((response) => {
+onMounted(async () => {
+    // TaskService.getTask(props.id).then((response) => {
+    //     title.value = response.data.title
+    //     description.value = response.data.description
+    //     status.value = response.data.status
+    //     due_date.value = response.data.due_date
+    // }).catch((error) => {
+    //     console.error('Error loading task:', error);
+    // })
+
+    try {
+        const response = await TaskService.getTask(props.id)
         title.value = response.data.title
         description.value = response.data.description
         status.value = response.data.status
         due_date.value = response.data.due_date
-    }).catch((error) => {
+
+    } catch (error) {
         console.error('Error loading task:', error);
-    })
+    }
 })
 
 const task = ref({})
@@ -59,7 +70,7 @@ const validateForm = () => {
     return isValid
 }
 
-const handleSubmit = () => {
+const handleSubmit = async () => {
     if (!validateForm()) {
         return
     }
@@ -70,16 +81,27 @@ const handleSubmit = () => {
         due_date: due_date.value
     }
 
-    TaskService.updateTask(props.id, task.value)
-        .then(() => {
-            showSuccessNotification.value = true
-            setTimeout(() => {
-                showSuccessNotification.value = false
-            }, 3000)
-        })
-        .catch((error) => {
-            console.error('Error updating task:', error);
-        })
+    // TaskService.updateTask(props.id, task.value)
+    //     .then(() => {
+    //         showSuccessNotification.value = true
+    //         setTimeout(() => {
+    //             showSuccessNotification.value = false
+    //         }, 3000)
+    //     })
+    //     .catch((error) => {
+    //         console.error('Error updating task:', error);
+    //     })
+
+    try {
+        await TaskService.updateTask(props.id, task.value)
+        showSuccessNotification.value = true
+        setTimeout(() => {
+            showSuccessNotification.value = false
+        }, 3000)
+
+    } catch (error) {
+        console.error('Error updating task:', error);
+    }
 }
 
 const hideSuccessNotification = () => {
